@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CSS</title>
+    <style>
+        .box1 {
+            position: relative;
+            margin: 50px auto;
+            width: 800px;
+            height: 500px;
+            background: silver;
+        }
+        .box2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            border-radius: 150px;
+            background: linear-gradient(45deg, teal, purple);
+            transition: scale 0.5s;
+            animation: move 3s infinite alternate;
+        }
+        .box2:hover {
+            scale: 1.2;
+        }
+        @keyframes move {
+            0% { top: 0; left: 0; }
+            50% { top: 350px; left: 320px; }
+            100% { top: 0; left: 650px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="box2"></div>
+    </div>
+</body>
+</html>
