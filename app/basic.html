@@ -4,34 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        .wrap {
-            display: flex;
-            gap: 10px;
-            /* flex-direction: column|row; */
-            align-items: center;
-            /* flex-start, flex-end */
-            justify-content: center;
-            /* space-between, space-around */
-            /* flex-start, flex-end */
-            margin: 20px auto;
-            width: 800px;
-            height: 400px;
-            background: silver;
-            padding: 20px;
-        }
-        .box {
-            width: 150px;
-            height: 150px;
-            background: deeppink;
-        }
-    </style>
 </head>
 <body>
-    <div class="wrap">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-    </div>
+    <script>
+        let data = [
+            { name: 'Alice', age: 22 },
+            { name: 'Bob', age: 20 },
+            { name: 'Chris', age: 19 },
+            { name: 'Dave', age: 23 },
+            { name: 'Eve', age: 18 },
+        ];
+
+        let names = data.map(user => user.name);
+        let u20 = data.filter(user => user.age <= 20);
+        let result = data
+            .filter(user => user.age <= 20)
+            .map(user => user.name);
+    </script>
 </body>
 </html>
