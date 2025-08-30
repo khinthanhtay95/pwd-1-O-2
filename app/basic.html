@@ -7,19 +7,30 @@
 </head>
 <body>
     <script>
-        let data = [
-            { name: 'Alice', age: 22 },
-            { name: 'Bob', age: 20 },
-            { name: 'Chris', age: 19 },
-            { name: 'Dave', age: 23 },
-            { name: 'Eve', age: 18 },
-        ];
+        let user = {
+            name: "Alice",
+            hello: function() {
+                console.log(`Hello ${this.name}`);
+            }
+        };
 
-        let names = data.map(user => user.name);
-        let u20 = data.filter(user => user.age <= 20);
-        let result = data
-            .filter(user => user.age <= 20)
-            .map(user => user.name);
+        class Animal {
+            constructor(name) {
+                this.name = name;
+            }
+
+            hello() {
+                console.log(`Hello ${this.name}`);
+            }
+        }
+
+        class Dog extends Animal {
+            run() {
+                console.log(`${this.name} is running...`);
+            }
+        }
+
+        let dog = new Dog("Bobby");
     </script>
 </body>
 </html>
