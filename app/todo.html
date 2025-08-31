@@ -30,8 +30,10 @@
     <script>
         let data = getData();
         data.map(item => {
-            createItem(item.text);
+            createItem(item.text, item.done);
         });
+
+        updateCount();
 
         function getData() {
             return JSON.parse(localStorage.getItem("data")) || [];
@@ -41,6 +43,22 @@
             let data = getData();
             data.push({ text, done: false });
             localStorage.setItem("data", JSON.stringify(data));
+        }
+
+        function deleteData(text) {
+            let data = getData();
+            let result = data.filter(item => item.text != text);
+            localStorage.setItem("data", JSON.stringify(result));
+        }
+
+        function checkData(text) {
+            let data = getData();
+            let result = data.map(item => {
+                if(item.text == text) item.done = true;
+                return item;
+            });
+
+            localStorage.setItem("data", JSON.stringify(result));
         }
 
         function updateCount() {
@@ -66,7 +84,7 @@
             document.querySelector("input").focus();
         }
 
-        function createItem(text) {
+        function createItem(text, done = false) {
             let li = document.createElement("li");
             li.classList.add("list-group-item");
             li.textContent = text;
@@ -78,8 +96,10 @@
                 document.querySelector("#done").appendChild(li);
                 check.remove();
                 updateCount();
+                checkData(text);
             }
-            li.appendChild(check);
+
+            if(!done) li.appendChild(check);
 
             let del = document.createElement("a");
             del.setAttribute("href", "#");
@@ -87,10 +107,15 @@
             del.onclick = () => {
                 li.remove();
                 updateCount();
+                deleteData(text);
             }
             li.appendChild(del);
 
-            document.querySelector("#todo").appendChild(li);
+            if(done) {
+                document.querySelector("#done").appendChild(li);
+            } else {
+                document.querySelector("#todo").appendChild(li);
+            }
         }
     </script>
 </body>
