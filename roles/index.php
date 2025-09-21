@@ -18,7 +18,7 @@
             <li>
                 <a href="del.php?id=<?= $role['id'] ?>">Del</a>
                 <a href="edit.php?id=<?= $role['id'] ?>">Edit</a>
-                <?= $role['name'] ?>
+                <?= htmlspecialchars($role['name']) ?>
                 (<?= $role['value'] ?>)
             </li>
         <?php endforeach ?>
