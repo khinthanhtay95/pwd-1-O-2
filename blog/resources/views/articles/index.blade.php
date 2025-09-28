@@ -1,17 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Article List</title>
-</head>
-<body>
-    <h1>Article List</h1>
-    <ul>
+@extends("layouts.app")
+
+@section("content")
+    <div class="container" style="max-width: 800px">
+        {{ $articles->links() }}
+
+        @if(session("info"))
+            <div class="alert alert-info">
+                {{ session("info") }}
+            </div>
+        @endif
+        
         @foreach($articles as $article)
-            <li>{{ $article['title'] }}</li>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h4>{{ $article->title }}</h4>
+                    <div class="text-muted">
+                        {{ $article->created_at->diffForHumans() }}
+                    </div>
+                    <p>
+                        {{ $article->body }}
+                    </p>
+                    <a href="{{ url("/articles/detail/$article->id") }}">
+                        View Detail
+                    </a>
+                </div>
+            </div>
         @endforeach
-    </ul>
-</body>
-</html>
+    </div>
+@endsection
